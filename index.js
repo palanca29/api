@@ -3,6 +3,9 @@ const cors = require('cors');
 const path = require('path'); // Import path module
 const app = express();
 const port = 43922;
+const arreglo_usuarios = Array()
+const arreglo_mails = Array()
+
 // Allow all cross-origin requests
 app.use(cors());
 // Middleware to parse JSON bodies
@@ -18,6 +21,20 @@ app.get('/', (req, res) => {
         }    
     }
 );
-    
+
+app.post('/', (req, res) => {
+const {usuario, email} = req.body;
+arreglo_usuarios.push(usuario)
+arreglo_mails.push(email)
+console.log(usuarios)
+console.log(mails)
+res.status(201).send({usuario,email})
+});
+
+   
     
 
+app.listen(port, () => {
+
+    console.log(`Server is running on http://localhost:${port}`);
+});
